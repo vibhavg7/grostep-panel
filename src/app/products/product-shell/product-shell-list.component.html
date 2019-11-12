@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}}
+        <button class="btn btn-outline-secondary" style="float:right" (click)="addProduct()">
+            Add Product
+        </button>
+    </div>
+    <div class="card-body">
+        <div *ngIf="productsCount > 0">
+            <form [formGroup]="searchCriteriaForm">
+                <div class="form-group">
+                    <div>
+                        <input formControlName="searchCriteria" type="text" class="form-control" id="inputError" autocomplete="off" autofocus placeholder="Search Products">
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    </div>
+                </div>
+            </form>
+
+            <app-pagination *ngIf='productsCount>0' [totalItemCount]="productsCount" (currentPage)="currentPageFn($event)"></app-pagination>
+            <div class="list-group">
+                <button type="button" class="list-group-item" (click)="onSelected(product)" *ngFor="let product of products" [ngClass]="{'active' : selectedProduct?.productId == product?.productId}">
+                    {{product?.productName}} - {{product?.productCode}}
+                </button>
+            </div>
+        </div>
+        <div *ngIf="productsCount == 0">
+            <span>No Products Found in catelog</span>
+        </div>
+    </div>
+</div>
+
+<div *ngIf='errorMessage' class='alert alert-danger'>
+    Error: {{ errorMessage }}
+</div>

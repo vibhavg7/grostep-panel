@@ -1,0 +1,79 @@
+<div class="card card-primary" *ngIf="productData">
+    <div class="card-header">
+        {{productData?.productName}}
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">Name:</div>
+                    <div class="col-md-8">{{productData?.productName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Code:</div>
+                    <div class="col-md-8">{{productData?.productCode}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Release Date:</div>
+                    <div class="col-md-8">{{productData?.releaseDate |date:'short' }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Last Updated:</div>
+                    <div class="col-md-8">{{productData?.lastUpdated | date:'short'}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Description:</div>
+                    <div class="col-md-8">{{productData?.description}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Price:</div>
+                    <div class="col-md-8">{{productData?.price}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Star Rating:</div>
+                    <div class="col-md-8">
+                        <app-star [rating]='productData?.starRating' (ratingClicked)='onRatingClicked($event)'>
+                        </app-star>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Category Name:</div>
+                    <div class="col-md-8">{{productData?.categoryName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Available:</div>
+                    <div class="col-md-8">{{productData?.available ? 'Available':'Not Available' }}</div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <img *ngIf="!image_url" class='center-block img-responsive' src='assets/product_images/default_image.jpg' [title]='productData?.productName'
+                    [style.width.px]='200' [style.margin.px]='2'>
+                <img *ngIf="image_url" class='center-block img-responsive' src='http://ec2-18-224-109-141.us-east-2.compute.amazonaws.com:3000/{{image_url}}' [title]='productData?.productName'
+                    [style.width.px]='200' [style.margin.px]='2'>
+
+                <span *ngIf="!image_url" (click)="uploadImage()" style="display:block;text-align:center;cursor:pointer;color:blue">
+                    Upload Image
+                </span>
+                <span *ngIf="image_url" (click)="uploadImage()" style="display:block;text-align:center;cursor:pointer;color:blue">
+                    Change Image
+                </span>
+                <!-- <span *ngIf="image_url" style="display:block;text-align:center;">
+                    <a [routerLink]="['/products',productData.productId,'edit']">Change Image</a>
+                </span> -->
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <button class="btn btn-primary mr-3" [routerLink]="['/products',productData.productId,'edit']">
+                    <i class='fa fa-chevron-left'></i> Edit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class='alert alert-danger' *ngIf='errorMessage'>{{errorMessage}}
+    </div>
+</div>

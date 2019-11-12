@@ -1,0 +1,78 @@
+<div class="card card-primary" *ngIf="customerData">
+    <!-- <div class="card-header">   
+        {{customerData?.customer_name}}
+    </div> -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Customer Id:</div>
+                    <div class="col-md-8">{{customerData?.customer_id}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Customer Name:</div>
+                    <div class="col-md-8">{{customerData?.customer_name}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Customer Email:</div>
+                    <div class="col-md-8">{{customerData?.email}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Registration Mode:</div>
+                    <div class="col-md-8">{{customerData?.registered_mode == 1 ? 'Phone' : 'FB'}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Customer DOB:</div>
+                    <div class="col-md-8">{{customerData?.customer_dob | date}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Customer Phone Number:</div>
+                    <div class="col-md-8">{{customerData?.phone}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Registration Date:</div>
+                    <div class="col-md-8">{{customerData?.registered_date | date:'medium'}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Last Updated</div>
+                    <div class="col-md-8">{{customerData?.last_updated | date:'medium'}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Customer Rating:</div>
+                    <div class="col-md-8">
+                        <app-star [rating]='customerData?.rating'>
+                        </app-star>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Available:</div>
+                    <div class="col-md-8">{{customerData?.status == 1 ? 'Available':'Not Available' }}</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <img class='center-block img-responsive' *ngIf="!customerData?.image_url" src='assets/product_images/default_image.jpg'
+                    [style.width.px]='250' [style.margin.px]='2'>
+                <!-- <span *ngIf="!customerData?.image_url" (click)="uploadImage(merchantData.store_id)" style="display:block;font-size:14px;cursor:pointer;color:blue">
+                    Upload Image
+                </span> -->
+                <img class='center-block img-responsive' *ngIf="customerData?.image_url" src='http://localhost:3000/{{customerData?.image_url}}'
+                    [title]='customerData?.customer_name' [style.width.px]='250' [style.margin.px]='2'>
+                <!-- <span *ngIf="merchantData?.image_url" (click)="uploadImage(merchantData.store_id)" style="display:block;font-size:14px;cursor:pointer;color:blue">
+                    Change Image
+                </span> -->
+            </div>
+        </div>
+    </div>
+    <!-- <div class="card-footer">
+        <div class="row mb-2">
+            <div class="col-md-8">
+
+            </div>
+        </div>
+    </div> -->
+
+    <div class='alert alert-danger' *ngIf='errorMessage'>{{errorMessage}}
+    </div>
+</div>

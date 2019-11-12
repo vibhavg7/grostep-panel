@@ -1,0 +1,83 @@
+<div class='card'>
+  <div class='card-header'>
+    {{pageTitle}}
+  </div>
+  <div class='card-body'>
+    <div class="row">
+      <div class='col-md-2'>Filter by:</div>
+      <div class='col-md-4'>
+        <form [formGroup]="searchCriteriaForm">
+          <input formControlName="searchCriteria" class="form-control" type="text" id="keyword" placeholder="Search Category By Name"
+            autocomplete="off" autofocus/>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-outline-secondary" style="float:right" [routerLink]="['/category/storecategories/',0,'edit']">
+          Add Store Category
+        </button>
+      </div>
+    </div>
+
+    <div class='table-responsive' *ngIf='storeCategories?.length > 0'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>
+              <button style="width:113px" class='btn btn-primary' (click)='toggleImage()'>
+                {{showImage ? 'Hide' : 'Show'}} Image
+              </button>
+            </th>
+            <th>SCId</th>
+            <th>Category Name</th>
+            <th>Ranking</th>
+            <th>Status</th>
+            <th>Last Updated</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let storeCategory of storeCategories'>
+            <td>
+              <img *ngIf="!storeCategory?.store_image_url" src='assets/product_images/default_image.jpg' [style.width.px]='imageWidth'
+                [style.height.px]='imageHeight' [style.margin.px]='imageMargin'>
+              <span *ngIf="!storeCategory?.store_image_url" (click)="uploadImage(storeCategory.store_category_id)" style="display:block;font-size:14px;cursor:pointer;color:blue">
+                Upload Image
+              </span>
+              <img *ngIf="storeCategory?.store_image_url" src='http://ec2-18-224-109-141.us-east-2.compute.amazonaws.com:3000/{{storeCategory?.store_image_url}}' [title]='storeCategory.store_category_name'
+                [style.height.px]='imageHeight' [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
+
+              <span *ngIf="storeCategory?.store_image_url" (click)="uploadImage(storeCategory.store_category_id)" style="display:block;font-size:14px;cursor:pointer;color:blue">
+                Change Image
+              </span>
+            </td>
+            <td>
+              <a [routerLink]="['/category/storesubcategories', storeCategory.store_category_id]">
+                {{ storeCategory?.store_category_id }}
+              </a>
+            </td>
+            <td>
+              <a [routerLink]="['/category/storesubcategories', storeCategory.store_category_id]">
+                {{ storeCategory?.store_category_name }}
+              </a>
+            </td>
+            <td>{{ storeCategory?.store_category_ranking }}</td>
+            <td style="font-weight:bold">{{ storeCategory?.status ? 'Available' : 'Not Available' }}</td>
+
+            <td>{{ storeCategory.last_updated | date:'medium' }}</td>
+
+
+            <td>
+              <button class="btn btn-outline-secondary" [routerLink]="['/category/storecategories',storeCategory?.store_category_id,'edit']">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf='storeCategories?.length == 0'>
+      No Store Categories Found
+    </div>
+  </div>
+</div>
+<div *ngIf='errorMessage' class='alert alert-danger'>
+  Error: {{ errorMessage }}
+</div>

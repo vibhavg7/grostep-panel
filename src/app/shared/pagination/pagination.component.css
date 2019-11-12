@@ -1,0 +1,11 @@
+a {
+    cursor: pointer;
+}
+
+.active
+{
+    background-color: #337ab7;
+    color:#fff;
+    width:10px;
+    padding:0px 5px 0px 5px
+}

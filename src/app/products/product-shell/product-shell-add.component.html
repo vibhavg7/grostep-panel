@@ -1,0 +1,128 @@
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>Add New Product</h2>
+                <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" formControlName="productName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.productName.errors }"
+                        />
+                        <div *ngIf="submitted && f.productName.errors" class="invalid-feedback">
+                            <div *ngIf="f.productName.errors.required">Product Name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Store Category Name</label>
+                        <div>
+                            <select class="form-control" (change)="storeCategoryChange($event.target.value)" formControlName="storeCategoryName">
+                                <option *ngFor="let storeCategory of storeCategories" value="{{storeCategory?.store_category_id}}">
+                                    {{storeCategory.store_category_name}}
+                                </option>
+                                <!-- <option value="0">Disabled</option> -->
+                            </select>
+                        </div>
+                        <!-- <input type="text" formControlName="storeCategoryName" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storeCategoryName.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeCategoryName.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeCategoryName.errors.required">Store Category Name is required</div>
+                        </div> -->
+                    </div>
+                    <div class="form-group">
+                        <label>Sub Category Name</label>
+                        <div>
+                            <select class="form-control" formControlName="subCategoryName">
+                                <option *ngFor="let subCategory of subCategoryData" value="{{subCategory?.category_id}}">
+                                    {{subCategory.category_name}}
+                                </option>
+                                <!-- <option value="0">Disabled</option> -->
+                            </select>
+                        </div>
+                        <!-- <input type="text" formControlName="storeCategoryName" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storeCategoryName.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeCategoryName.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeCategoryName.errors.required">Store Category Name is required</div>
+                        </div> -->
+                    </div>
+                    <div class="form-group">
+                        <label>Weight Type</label>
+                        <div>
+                            <select class="form-control" formControlName="productWeightType">
+                                <option selected value="1">kg</option>
+                                <option value="2">gms</option>
+                                <option value="3">litre</option>
+                                <option value="5">ml</option>
+                                <option value="4">packet</option>
+                                <option value="6">pieces</option>
+                            </select>
+                        </div>
+                        <!-- <input type="text" formControlName="storeCategoryName" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storeCategoryName.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeCategoryName.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeCategoryName.errors.required">Store Category Name is required</div>
+                        </div> -->
+                    </div>
+                    <div class="form-group">
+                        <label>Orignal Price(M.R.P)</label>
+                        <input type="text" formControlName="productPrice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.productPrice.errors }"
+                        />
+                        <div *ngIf="submitted && f.productPrice.errors" class="invalid-feedback">
+                            <div *ngIf="f.productPrice.errors.required">Product Price is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Product Weight</label>
+                        <input type="text" formControlName="productWeight" class="form-control" 
+                                [ngClass]="{ 'is-invalid': submitted && f.productWeight.errors }" />
+                        <div *ngIf="submitted && f.productWeight.errors" class="invalid-feedback">
+                            <div *ngIf="f.productWeight.errors.required">Product weight is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Product Code</label>
+                        <input type="text" formControlName="productCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.productCode.errors }"
+                        />
+                        <div *ngIf="submitted && f.productCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.productCode.errors.required">Product Code is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Product Desciption</label>
+                        <textarea row="3" formControlName="productDescription" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.productDescription.errors }"></textarea>
+                        <div *ngIf="submitted && f.productDescription.errors" class="invalid-feedback">
+                            <div *ngIf="f.productDescription.errors.required">Product Description is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Product Rating</label>
+                        <input type="text" formControlName="productRating" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.productRating.errors }"
+                        />
+                        <div *ngIf="submitted && f.productRating.errors" class="invalid-feedback">
+                            <div *ngIf="f.productRating.errors.required">Product Rating is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Status</label>
+                        <div>
+                            <select class="form-control" formControlName="status">
+                                <option value="1">Enabled</option>
+                                <option value="0">Disabled</option>
+                            </select>
+                        </div>
+                        <!-- <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        </div> -->
+                    </div>
+
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

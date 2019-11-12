@@ -1,0 +1,32 @@
+<div class='row'>
+    <div class='col-md-2'>Filter by:</div>
+    <div class='col-md-4'>
+        <input type='text' #filterElement [(ngModel)]='listFilter' />
+    </div>
+    <div class="col-md-6">
+        <button *ngIf="type == 'AP'" class="btn btn-outline-secondary" style="float:right" (click)="addProduct()">
+            Add Products
+        </button>
+        <button *ngIf="type == 'SC'" class="btn btn-outline-secondary" style="float:right" 
+            [routerLink]="['/category/storecategories/',0,'edit']">
+            Add Store Category
+        </button>
+        <button *ngIf="type == 'SP'" class="btn btn-outline-secondary" style="float:right" (click)="addStoreProduct()">
+                    <!-- [routerLink]="['merchant/',0,'merchantproducts/edit']"> -->
+            Add Store Product
+        </button>
+        <button *ngIf="type == 'AC'" class="btn btn-outline-secondary" style="float:right" 
+                    [routerLink]="['/category/storesubcategories/',0,'edit']">
+            Add Category
+        </button>
+        <button *ngIf="type == 'AM'" class="btn btn-outline-secondary" style="float:right" [routerLink]="['/merchant/',0,'edit']">
+            Add New Store
+        </button>
+    </div>
+</div>
+<div class='row' *ngIf='displayDetails'>
+    <div class='col-md-10'>
+        <h4>Filtered by: {{listFilter}} {{hitMessage}}
+        </h4>
+    </div>
+</div>

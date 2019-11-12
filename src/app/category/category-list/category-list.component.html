@@ -1,0 +1,71 @@
+<div class='card'>
+    <div class='card-header'>
+        {{pageTitle}}
+    </div>
+    <div class='card-body'>
+        <div class="row">
+            <div class='col-md-2'>Filter by:</div>
+            <div class='col-md-4'>
+                <form [formGroup]="searchCriteriaForm">
+                    <input formControlName="searchCriteria" class="form-control" type="text" id="keyword" placeholder="Search Subcategory By Name"
+                        autocomplete="off" autofocus/>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-outline-secondary" style="float:right" [routerLink]="['/category/storesubcategories/',0,'edit']">
+                    Add Category
+                </button>
+            </div>
+        </div>
+
+        <div class='table-responsive'>
+            <table class='table' *ngIf='categories?.length'>
+                <thead>
+                    <tr>
+                        <th>Category Id</th>
+                        <th>Sub Category Name</th>
+                        <th>Store Category Name</th>
+                        <th>Ranking</th>
+                        <th>Status</th>
+                        <th>Last Updated</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let category of categories'>
+                      
+                        <td>
+                            <a [routerLink]="['/category/storesubcategories', category.category_id]">
+                                {{ category?.category_id }}
+                            </a>
+                        </td>
+                        <td>
+                            <a [routerLink]="['/category/storesubcategories', category.category_id]">
+                                {{ category?.sub_category_name }}
+                            </a>
+                        </td>
+                        <td>
+                            {{ category?.store_category_name }}
+                        </td>
+                        <td>{{ category?.ranking }}</td>
+                        <td style="font-weight:bold">{{ category?.status ? 'Available' : 'Not Available' }}</td>
+
+                        <td>{{ category.last_update | date:'short' }}</td>
+
+
+                        <td>
+                            <button class="btn btn-outline-secondary" [routerLink]="['/category/storesubcategories',category?.category_id,'edit']">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div *ngIf='categories?.length == 0'>
+                No Sub Category Data Found
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf='errorMessage' class='alert alert-danger'>
+    Error: {{ errorMessage }}
+</div>

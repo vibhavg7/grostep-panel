@@ -1,0 +1,95 @@
+<div class='card'>
+        <div class='card-header'>
+            {{pageTitle}}
+            <button class="btn btn-outline-secondary" style="float:right" [routerLink]="['/merchant/',0,'edit']">
+                Add New Address
+            </button>
+        </div>
+        <div class='card-body'>
+            <div class="row">
+                <!-- <div class='row'> -->
+                <!-- <div class='col-md-2'>Filter by:</div> -->
+                <!-- <div class='col-md-4'>
+                    <form [formGroup]="searchCriteriaForm">
+                        <input formControlName="searchCriteria" class="form-control" type="text" id="keyword" 
+                            placeholder="Search Merchant Order By Id" 
+                            autocomplete="off" autofocus/>
+                    </form>                    
+                </div> -->
+                <!-- <div class="col-md-6">
+                    <button class="btn btn-outline-secondary" style="float:right" [routerLink]="['/merchant/',0,'edit']">
+                        Add New Store
+                    </button>
+                </div> -->
+                <!-- </div>        -->
+                <!-- <app-criteria [type]="displaytype" [displayDetails]="includeDetails" [hitCount]="store_total_count"
+                     (filterElementValue)="onValueChange($event)"
+                    class="col-md-12"></app-criteria> -->
+            </div>
+            <div class='table-responsive'>
+                    <table style="width:1000px !important" class='table' *ngIf='addresses.length'>
+                            <thead>
+                                <tr>
+                                    <th style="width:90px !important">Id</th>
+                                    <th>Customer Name</th>
+                                    <th>Address</th>
+                                    <th>Landmark</th>
+                                    <th>Address Type</th>
+                                    <th>Phone</th>
+                                    <th>Location</th>
+                                    <th>Pincode</th>
+                                    <th>Lat & Long</th>
+                                    <th>Last Update</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let address of addresses'>
+                                    <td style="width:90px !important">
+                                        <a [routerLink]="['/merchant', address.delivery_address_id]">
+                                            {{ address?.delivery_address_id }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{address?.customer_name}}
+                                    </td>
+                                    <td>
+                                         {{ address?.address }} {{ address?.address2 }}
+                                    </td>
+                                    <td>
+                                        {{address?.landmark}}
+                                    </td>
+            
+                                    <td>
+                                        {{address?.address_type}}
+                                    </td>
+                                    <td>
+                                        {{address?.delivery_phone}}
+                                    </td>
+                                    <td>
+                                        {{address?.city}}/{{address?.state}}/{{address?.country}}
+                                    </td>
+                                    <td>
+                                        {{address?.pincode}}
+                                    </td>
+                                    <td>
+                                        {{address?.latitude | number:'2.1-2'}}/{{address?.longitude| number:'2.1-2'}}
+                                    </td>
+                                    <td>{{address?.last_update | date:'medium'}}</td>
+                                    <td style="font-weight:bold">{{ address?.status ? 'Available' : 'Not Available' }}</td>
+            
+                                </tr>
+                            </tbody>
+                        </table>
+            
+                        <!-- {{store_order_total_count}} -->
+                        <!-- <app-pagination *ngIf='storeOrders?.length' [totalItemCount]="store_order_total_count" (currentPage)="currentPageFn($event)"></app-pagination> -->
+                        <div *ngIf='addresses?.length == 0'>
+                            No Address Data Found
+                        </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf='errorMessage' class='alert alert-danger'>
+        Error: {{ errorMessage }}
+    </div>

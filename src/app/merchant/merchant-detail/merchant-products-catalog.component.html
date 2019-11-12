@@ -1,0 +1,76 @@
+<div class='card'>
+    <div class='card-body'>
+        <div class="row">
+            <div class='col-md-2'>Filter by:</div>
+            <div class='col-md-4'>
+                <form [formGroup]="searchCriteriaForm">
+                    <input formControlName="searchCriteria" class="form-control" type="text" id="keyword" placeholder="Search Merchant Product By Name"
+                        autocomplete="off" autofocus/>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-outline-secondary" style="float:right" [routerLink]="[0,'edit']">
+                    Add New Store Product
+                </button>
+            </div>
+        </div>
+        <div class='table-responsive' *ngIf='store_products_count'>
+            <table style="width:1000px !important" class='table' *ngIf='store_products_count'>
+                <thead>
+                    <tr>
+                        <th>
+                            <button style="width:113px" class='btn btn-primary' (click)='toggleImage()'>
+                                {{showImage ? 'Hide' : 'Show'}} Image
+                            </button>
+                        </th>
+                        <th style="width:90px !important">Name</th>
+                        <th>MP</th>
+                        <th>CP</th>
+                        <th>SP</th>
+                        <th>Discount</th>
+                        <th>Store Margin</th>
+                        <!-- <th>Product Rating</th> -->
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let store_product of store_products_info'>
+                        <td>
+                            <img *ngIf="!store_product.image_url" class='center-block img-responsive' src='assets/product_images/default_image.jpg' [title]='store_product?.product_name'
+                                [style.width.px]='80' [style.margin.px]='0'>
+                            <img *ngIf="store_product.image_url" class='center-block img-responsive' src='http://http://ec2-18-224-109-141.us-east-2.compute.amazonaws.com:3000/{{store_product.image_url}}' [title]='store_product?.product_name'
+                                [style.width.px]='80' [style.margin.px]='0'>
+                        </td>
+                        <td>
+                            <a>{{ store_product?.product_name }}</a>
+                        </td>
+                        <td>
+                            <i class="fas fa-rupee-sign"></i> {{ store_product?.product_marked_price }}</td>
+                        <td>
+                            <i class="fas fa-rupee-sign"></i> {{ store_product?.store_cost_price }}</td>
+                        <td>
+                            <i class="fas fa-rupee-sign"></i> {{ store_product?.store_selling_price }}</td>
+                        <td>{{ store_product?.store_discount }}%</td>
+                        <td>{{ store_product?.store_margin }}%</td>
+                        <!-- <td>
+                            <app-star [rating]='store_product?.store_product_rating' (ratingClicked)='onRatingClicked($event)'>
+                            </app-star>
+                        </td> -->
+                        <td>
+                            <input type="checkbox" value="{{store_product.stock.data[0]}}" name="{{store_product.store_product_mapping_id}}" [checked]="(store_product.stock.data[0] ? 'checked' : '')"
+                                (change)="updateProductStock($event)">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-pagination *ngIf='store_products_count' [totalItemCount]="store_products_count" (currentPage)="currentPageFn($event)"></app-pagination>
+        </div>
+        <div *ngIf='store_products_count == 0'>
+            No Products in store catelog
+        </div>
+
+    </div>
+</div>
+<div *ngIf='errorMessage' class='alert alert-danger'>
+    Error: {{ errorMessage }}
+</div>

@@ -1,0 +1,70 @@
+<div class="card card-primary" *ngIf="invoiceData">
+        <!-- <div class="card-header">
+                <button class="btn btn-primary mr-3" [routerLink]="['/merchant',merchantData.store_id,'edit']">
+                    <i class='fa fa-chevron-left'></i> Edit
+                </button>
+                {{merchantData?.store_name}}
+        
+            </div> -->
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-4" class="table-key">Payment Id:</div>
+                        <div class="col-md-8">{{invoiceData?.order_payment_info_id}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" class="table-key">Order Id:</div>
+                        <div class="col-md-8">{{invoiceData?.order_id}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" class="table-key">Bill Amount:</div>
+                        <div class="col-md-8"><i class="fas fa-rupee-sign"></i> {{invoiceData?.bill_amount}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" class="table-key">Total Order Amount:</div>
+                        <div class="col-md-8"><i class="fas fa-rupee-sign"></i> {{invoiceData?.total_amount}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" class="table-key">Delivery Fee:</div>
+                        <div class="col-md-8"><i class="fas fa-rupee-sign"></i> {{invoiceData?.delivery_fee}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" class="table-key">Voucher Amount:</div>
+                        <div class="col-md-8"><i class="fas fa-rupee-sign"></i> {{invoiceData?.voucher_amount}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" class="table-key">Payable Amount:</div>
+                        <div class="col-md-8"><i class="fas fa-rupee-sign"></i> {{invoiceData?.payable_amount}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" class="table-key">Payment Mode:</div>
+                        <div class="col-md-8">{{invoiceData?.payment_mode == 1 ? 'Online':'Cash'}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4" class="table-key">Payment Date:</div>
+                        <div class="col-md-8">{{invoiceData?.last_updated | date:'medium'}}</div>
+                    </div>                   
+                    <div class="row">
+                        <div class="col-md-4" class="table-key">Order Status:</div>
+                        <div class="col-md-8">{{invoiceData?.order_status}}</div>
+                    </div>
+                </div>
+    
+                <div class="col-md-4">
+                    <img class='center-block img-responsive' *ngIf="!invoiceData?.bill_image" 
+                        src='assets/product_images/default_image.jpg'
+                        [style.width.px]='250' [style.margin.px]='2'>
+    
+                    <img class='center-block img-responsive' *ngIf="invoiceData?.bill_image" 
+                        src='http://localhost:3000/{{invoiceData?.bill_image}}'
+                        [title]='invoiceData?.customer_name' [style.width.px]='250' [style.margin.px]='2'>
+    
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class='alert alert-danger' *ngIf='errorMessage'>{{errorMessage}}
+        </div>
+    </div>

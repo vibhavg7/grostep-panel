@@ -1,0 +1,72 @@
+<div class="card card-primary" *ngIf="customerData">
+    <!-- <div class="card-header">
+            <button class="btn btn-primary mr-3" [routerLink]="['/merchant',merchantData.store_id,'edit']">
+                <i class='fa fa-chevron-left'></i> Edit
+            </button>
+            {{merchantData?.store_name}}
+    
+        </div> -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Customer Id:</div>
+                    <div class="col-md-8">{{customerData?.customer_id}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Customer Name:</div>
+                    <div class="col-md-8">{{customerData?.customer_name}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Customer Email:</div>
+                    <div class="col-md-8">{{customerData?.customer_email}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Registered Phone Number:</div>
+                    <div class="col-md-8">{{customerData?.registered_number}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Delivery Address Id:</div>
+                    <div class="col-md-8">{{customerData?.delivery_address_id}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Delivery Address:</div>
+                    <div class="col-md-8">{{customerData?.address}} - {{customerData?.address2}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">DeliveryLandmark:</div>
+                    <div class="col-md-8">{{customerData?.landmark}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Delivery Location:</div>
+                    <div class="col-md-8">{{customerData?.country}} / {{customerData?.state}} / {{customerData?.city}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Delivery PinCode:</div>
+                    <div class="col-md-8">{{customerData?.pincode}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Delivery Lat and Long:</div>
+                    <div class="col-md-8">{{customerData?.latitude}} / {{customerData?.longitude}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Address Type:</div>
+                    <div class="col-md-8">{{customerData?.address_type}}</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <img class='center-block img-responsive' *ngIf="!customerData?.customer_image_url" src='assets/product_images/default_image.jpg'
+                    [style.width.px]='250' [style.margin.px]='2'>
+
+                <img class='center-block img-responsive' *ngIf="customerData?.customer_image_url" src='http://localhost:3000/{{customerData?.customer_image_url}}'
+                    [title]='customerData?.customer_name' [style.width.px]='250' [style.margin.px]='2'>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class='alert alert-danger' *ngIf='errorMessage'>{{errorMessage}}
+    </div>
+</div>

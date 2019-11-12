@@ -1,0 +1,30 @@
+<div class="card">
+        <div class="card-header">
+            <div class="wizard">
+                <!-- <a [routerLink]="['orderinfo']" routerLinkActive="active">
+                    Order Information
+                </a> -->
+                <a [routerLink]="['productsinfo']" routerLinkActive="active">
+                    Order Product Info
+                </a>
+                <a [routerLink]="['customerinfo']" routerLinkActive="active">
+                    Order Customer Info
+                </a>
+                <a [routerLink]="['merchantinfo']" routerLinkActive="active">
+                    Order Merchant Info
+                </a>
+                <!-- <a [routerLink]="['deliveryinfo']" routerLinkActive="active">
+                    Delivery Info
+                </a> -->
+                <a [routerLink]="['invoiceinfo']" routerLinkActive="active">
+                    Order Invoice Info
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    
+    <!-- <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}
+    </div> -->

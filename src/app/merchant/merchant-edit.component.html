@@ -1,0 +1,179 @@
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>Add New Store</h2>
+                <form [formGroup]="addStoreForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>Store Name</label>
+                        <input type="text" formControlName="storeName" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storeName.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeName.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeName.errors.required">Store Name is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Store Category</label>
+                        <div>
+                            <select class="form-control" formControlName="storeCategoryName">
+                                <option *ngFor="let storeCategory of storeCategories" value="{{storeCategory?.store_category_id}}">
+                                    {{storeCategory.store_category_name}}
+                                </option>
+                                <!-- <option value="0">Disabled</option> -->
+                            </select>
+                        </div>
+                        <!-- <input type="text" formControlName="storeCategoryName" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storeCategoryName.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeCategoryName.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeCategoryName.errors.required">Store Category Name is required</div>
+                        </div> -->
+                    </div>
+                    <div class="form-group">
+                        <label>Store Email</label>
+                        <input type="text" formControlName="storeEmail" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storeEmail.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeEmail.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeEmail.errors.required">Store Email is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" formControlName="storePhoneNumber" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storePhoneNumber.errors }"
+                        />
+                        <div *ngIf="submitted && f.storePhoneNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.storePhoneNumber.errors.required">Store Phone Number is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Alternate Number</label>
+                        <input type="text" formControlName="storeAlternateNumber" class="form-control" />                      
+                    </div>
+                    <div class="form-group">
+                        <label>Landline Number</label>
+                        <input type="text" formControlName="storeLandlineNumber" class="form-control" />                      
+                    </div>
+                    <div class="form-group">
+                        <label>GST Number</label>
+                        <input type="text" formControlName="storeGSTNumber" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storeGSTNumber.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeGSTNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeGSTNumber.errors.required">Store GST Number is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>PAN Number</label>
+                        <input type="text" formControlName="storePANNumber" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storePANNumber.errors }"
+                        />
+                        <div *ngIf="submitted && f.storePANNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.storePANNumber.errors.required">Store PAN Number is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea row="3" formControlName="storeAddress" class="form-control" 
+                                [ngClass]="{ 'is-invalid': submitted && f.storeAddress.errors }"></textarea>
+                        <div *ngIf="submitted && f.storeAddress.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeAddress.errors.required">Store Address is required</div>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label>Country</label>
+                        <div>
+                            <select class="form-control" formControlName="country">
+                                <option selected value="India">India</option>                 
+                            </select>
+                        </div>
+                      
+                    </div>
+                    <div class="form-group">
+                        <label>State</label>
+                        <div>
+                            <select class="form-control" formControlName="state">
+                                <option selected value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option selected value="Haryana">Haryana</option>                                                            
+                            </select>
+                        </div>                       
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <div>
+                            <select class="form-control" formControlName="city">
+                                <option selected value="Noida">Noide</option>
+                                <option selected value="Gurgaon">Gurgaon</option>                                                            
+                            </select>
+                        </div>                       
+                    </div>
+                    <div class="form-group">
+                        <label>Pin Code</label>
+                        <input type="text" formControlName="pinCode" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.pinCode.errors }"
+                        />
+                        <div *ngIf="submitted && f.pinCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.pinCode.errors.required">PinCode is required</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Store Description</label>
+                        <textarea row="3" formControlName="storeDescription" class="form-control" 
+                                [ngClass]="{ 'is-invalid': submitted && f.storeDescription.errors }"></textarea>
+                        <div *ngIf="submitted && f.storeDescription.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeDescription.errors.required">Store Description is required</div>
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <label>Store Rating</label>
+                        <input type="text" formControlName="storeRating" class="form-control" 
+                                [ngClass]="{ 'is-invalid': submitted && f.storeRating.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeRating.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeRating.errors.required">Store Rating is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Store Latitude</label>
+                        <input type="text" formControlName="storeLatitude" class="form-control" 
+                                [ngClass]="{ 'is-invalid': submitted && f.storeLatitude.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeLatitude.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeLatitude.errors.required">Store Latitude is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Store Longitude</label>
+                        <input type="text" formControlName="storeLongitude" class="form-control" 
+                                [ngClass]="{ 'is-invalid': submitted && f.storeLongitude.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeLongitude.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeLongitude.errors.required">Store Longitude is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Status</label>
+                        <div>
+                            <select class="form-control" formControlName="status">
+                                <option value="1">Enabled</option>
+                                <option value="0">Disabled</option>
+                            </select>
+                        </div>
+                        <!-- <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        </div> -->
+                    </div>
+
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

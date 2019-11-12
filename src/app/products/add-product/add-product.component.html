@@ -1,0 +1,65 @@
+<div class="container">
+    <h2>Add Product</h2>
+   
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)"> 
+        <div class="form-group">
+            <label for="name">Product Name</label>
+            <input type="text" [(ngModel)]="userSetting.name" [class.field-error]="form.submitted && nameField.invalid"
+                    id="name" name="name" class="form-control" required #nameField="ngModel" />
+        </div>
+        <div [hidden]="!form.submitted || nameField.valid" class="alert alert-danger">
+            <span>Enter a name</span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" [(ngModel)]="userSetting.password" id="password" class="form-control">
+        </div>
+        <div class="form-check">
+            <input [(ngModel)]="userSetting.email" name="email" class="form-check-input" type="checkbox" value="" id="email">
+            <label class="form-check-label" for="email">
+                Email special offers
+            </label>
+        </div>
+        <div class="form-group">
+            <h2>User Interface Style</h2>
+            <div class="form-check">
+                <input [(ngModel)]="userSetting.interfacesRadios" class="form-check-input" type="radio" name="interfacesRadios" id="lightInterface" value="light" checked>
+                <label class="form-check-label" for="lightInterface">
+                    Light
+                </label>
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="userSetting.interfacesRadios" class="form-check-input" type="radio" name="interfacesRadios" id="mediumInterface" value="medium">
+                <label class="form-check-label" for="mediumInterface">
+                    Medium
+                </label>
+            </div>
+            <div class="form-check">
+                <input [(ngModel)]="userSetting.interfacesRadios" class="form-check-input" type="radio" name="interfacesRadios" id="exampleRadios2" value="dark">
+                <label class="form-check-label" for="darkInterface">
+                    Dark
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="subscription">Subscription Type</label>
+            <select [(ngModel)]="userSetting.subscription" name="subscription" class="form-control" id="subscription">
+                <option value="monthly">Monthly</option>
+                <option value="annual">Annual</option>
+                <option value="lifetime">LifeTime</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea [(ngModel)]="userSetting.notes" name="notes" class="form-control" id="notes" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input [(ngModel)]="userSetting.date" name="date"  type="date" id="date" class="form-control">
+        </div>
+        <div *ngIf="postError" class="alert alert-danger">
+            {{errorMessage}}
+        </div>
+        <button class="btn btn-primary">Save</button>
+    </form>
+</div>

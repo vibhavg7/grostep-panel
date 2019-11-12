@@ -1,0 +1,98 @@
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>Add New Store Product</h2>
+                <form [formGroup]="addStoreProductForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <div class="autocomplete" style="width:490px;">
+                            <input formControlName="storeproductName" class="form-control" type="text" id="keyword" 
+                                placeholder="Search Product By Name" autocomplete="off"  autofocus/>                            
+                            <div class="autocomplete-items">
+                                <div *ngFor="let result of results">
+                                    <p (click)="productSelected(result)">{{result?.product_name}}</p>
+                                </div>
+                            </div>
+                        </div>             
+                    </div>
+
+                    <div class="form-group">
+                            <label>Product Marked Price</label>
+                            <input type="text" formControlName="productMarkedPrice" class="form-control" 
+                                [ngClass]="{ 'is-invalid': submitted && f.productMarkedPrice.errors }"
+                            />
+                            <div *ngIf="submitted && f.productMarkedPrice.errors" class="invalid-feedback">
+                                <div *ngIf="f.productMarkedPrice.errors.required">Product Marked Price is required</div>
+                            </div>
+                        </div>
+                                 
+                    <div class="form-group">
+                        <label>Product Cost Price</label>
+                        <input type="text" formControlName="productCostPrice" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.productCostPrice.errors }"
+                        />
+                        <div *ngIf="submitted && f.productCostPrice.errors" class="invalid-feedback">
+                            <div *ngIf="f.productCostPrice.errors.required">Product Cost Price is required</div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Product Selling Price</label>
+                        <input type="text" formControlName="productSellingPrice" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.productSellingPrice.errors }"
+                        />
+                        <div *ngIf="submitted && f.productSellingPrice.errors" class="invalid-feedback">
+                            <div *ngIf="f.productSellingPrice.errors.required">Product Selling Price is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Store Margin</label>
+                        <input type="text" formControlName="storeMargin" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storeMargin.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeMargin.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeMargin.errors.required">Store Margin is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Store Discount</label>
+                        <input type="text" formControlName="storeDiscount" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storeDiscount.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeDiscount.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeDiscount.errors.required">Store discount is required</div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label>Store Quantity</label>
+                        <input type="text" formControlName="storeQuantity" class="form-control" 
+                            [ngClass]="{ 'is-invalid': submitted && f.storeQuantity.errors }"
+                        />
+                        <div *ngIf="submitted && f.storeQuantity.errors" class="invalid-feedback">
+                            <div *ngIf="f.storeQuantity.errors.required">Store Quantity is required</div>
+                        </div>
+                    </div> -->
+                   
+                    <div class="form-group">
+                        <label for="">Status</label>
+                        <div>
+                            <select class="form-control" formControlName="status">
+                                <option value="1">Enabled</option>
+                                <option value="0">Disabled</option>
+                            </select>
+                        </div>
+                        <!-- <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            </div> -->
+                    </div>
+
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

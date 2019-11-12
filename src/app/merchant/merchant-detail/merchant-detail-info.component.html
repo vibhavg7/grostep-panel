@@ -1,0 +1,94 @@
+<div class="card card-primary" *ngIf="merchantData">
+    <div class="card-header">
+        <button class="btn btn-primary mr-3" [routerLink]="['/merchant',merchantData.store_id,'edit']">
+            <i class='fa fa-chevron-left'></i> Edit
+        </button>
+        {{merchantData?.store_name}}
+
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Store Id:</div>
+                    <div class="col-md-8">{{merchantData?.store_id}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Store Name:</div>
+                    <div class="col-md-8">{{merchantData?.store_name}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Store Email:</div>
+                    <div class="col-md-8">{{merchantData?.store_email}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Store Category:</div>
+                    <div class="col-md-8">{{merchantData?.store_category_name}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Store Phone Number:</div>
+                    <div class="col-md-8">{{merchantData?.phone_number}} / {{merchantData?.alternative_number}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Store Location:</div>
+                    <div class="col-md-8">{{merchantData?.country}} / {{merchantData?.state}} / {{merchantData?.city}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Store PinCode:</div>
+                    <div class="col-md-8">{{merchantData?.pin_code}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Store Lat and Long:</div>
+                    <div class="col-md-8">{{merchantData?.latitude}} / {{merchantData?.longitude}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">GST Number:</div>
+                    <div class="col-md-8">{{merchantData?.gst_number}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">PAN Number:</div>
+                    <div class="col-md-8">{{merchantData?.pan_number}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Store Address:</div>
+                    <div class="col-md-8">{{merchantData?.address}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Store Rating:</div>
+                    <div class="col-md-8">
+                        <app-star [rating]='merchantData?.store_rating' (ratingClicked)='onRatingClicked($event)'>
+                        </app-star>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" class="table-key">Available:</div>
+                    <div class="col-md-8">{{merchantData?.status.data[0] == 1 ? 'Available':'Not Available' }}</div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <img class='center-block img-responsive' *ngIf="!merchantData?.image_url" src='assets/product_images/default_image.jpg' [title]='merchantData?.store_name'
+                    [style.width.px]='250' [style.margin.px]='2'>
+                <span *ngIf="!merchantData?.image_url" (click)="uploadImage(merchantData.store_id)" style="display:block;font-size:14px;cursor:pointer;color:blue">
+                    Upload Image
+                </span>
+                <img class='center-block img-responsive' *ngIf="merchantData?.image_url" 
+                    src='http://localhost:3000/{{merchantData?.image_url}}'
+                    [title]='merchantData?.store_name' [style.width.px]='250' [style.margin.px]='2'>
+                <span *ngIf="merchantData?.image_url" (click)="uploadImage(merchantData.store_id)" style="display:block;font-size:14px;cursor:pointer;color:blue">
+                    Change Image
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row mb-2">
+            <div class="col-md-8">
+
+            </div>
+        </div>
+    </div>
+
+    <div class='alert alert-danger' *ngIf='errorMessage'>{{errorMessage}}
+    </div>
+</div>

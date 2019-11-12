@@ -1,0 +1,70 @@
+<div class='card'>
+        <div class='card-header'>
+            {{pageTitle}}
+        </div>
+        <div class='card-body'>
+            <div class="row">
+                <!-- <div class='row'> -->
+                <div class='col-md-2'>Filter by:</div>
+                <div class='col-md-4'>
+                    <form [formGroup]="searchCriteriaForm">
+                        <input formControlName="searchCriteria" class="form-control" type="text" id="keyword" 
+                            placeholder="Search Merchant Order By Id" autocomplete="off" autofocus/>
+                    </form>
+                </div>
+            </div>
+            <div class='table-responsive'>
+                <table style="width:1000px !important" class='table' *ngIf='customerOrders.length'>
+                    <thead>
+                        <tr>
+                            <th style="width:90px !important">Transaction Id</th>
+                            <th>Product Details</th>
+                            <th>Order Amount</th>
+                            <th>Voucher</th>
+                            <th>Discount</th>
+                            <th>Delivery Fee</th>
+                            <th>Payable Amount</th>
+                            <th>Payment Mode</th>
+                            <th>Order Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let customerOrder of customerOrders'>
+                            <td style="width:90px !important">
+                                <a [routerLink]="['/order/',customerOrder?.order_id,'productsinfo']">
+                                    {{ customerOrder?.order_id }}
+                                </a>
+                            </td>
+                            <td>
+                                <span (click)="ViewOrderedProducts(customerOrder?.order_id)" 
+                                        style="display:block;font-size:14px;cursor:pointer;color:blue">
+                                    Ordered Products
+                                </span>
+                            </td>
+                            <td>
+                                <i class="fas fa-rupee-sign"></i> {{ customerOrder?.order_amount }}
+                            </td>
+                            <td>{{customerOrder?.voucher_code}}</td>
+                            <td><i class="fas fa-rupee-sign"></i>{{customerOrder?.discount_amount}}</td>
+                            <td><i class="fas fa-rupee-sign"></i>{{customerOrder?.order_delivery_fee}}</td>
+                            <td><i class="fas fa-rupee-sign"></i> {{ customerOrder?.final_amount }}</td>
+                            <td>{{ customerOrder?.payment_mode == 1 ? 'Online':'Cash' }}</td>
+                            <td>{{ customerOrder?.order_placing_date |date:'medium' }}</td>
+                            <td style="font-weight:bold">{{ customerOrder?.order_status}}</td>
+    
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <!-- {{customerOrder?.length}} -->
+                <app-pagination *ngIf='customerOrders?.length' [totalItemCount]="order_total_count" (currentPage)="currentPageFn($event)"></app-pagination>
+                <div *ngIf='customerOrder?.length == 0'>
+                    No Stores Data Found
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf='errorMessage' class='alert alert-danger'>
+        Error: {{ errorMessage }}
+    </div>

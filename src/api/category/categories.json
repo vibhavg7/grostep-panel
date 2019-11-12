@@ -1,0 +1,132 @@
+{
+  "message": "Category Data",
+  "status": 200,
+  "categories": [
+    {
+      "category_id": "3",
+      "category_name": "Grocery",
+      "category_image_url": "",
+      "sub_categories": [
+        {
+          "category_id": "17",
+          "category_name": "Kitchen Staples",
+          "category_image_url": "",
+          "sub_categories": [
+            {
+              "category_id": "18",
+              "category_image_url": "",
+              "category_name": "Dal & Beans"
+            },
+            {
+              "category_id": "19",
+              "category_image_url": "",
+              "category_name": "Masala & Spices"
+            },
+            {
+              "category_id": "20",
+              "category_image_url": "",
+              "category_name": "Aata"
+            },
+            {
+              "category_id": "21",
+              "category_image_url": "",
+              "category_name": "Sugar & Substitutes"
+            }
+          ]
+        },
+        {
+          "category_id": "8",
+          "category_image_url": "",
+          "category_name": "Egg",
+          "sub_categories": []
+        },
+        {
+          "category_id": "12",
+          "category_image_url": "",
+          "category_name": "Biscuits",
+          "sub_categories": []
+        },
+        {
+          "category_id": "16",
+          "category_image_url": "",
+          "category_name": "Oil",
+          "sub_categories": []
+        }
+      ]
+    },
+    {
+      "category_id": "7",
+      "category_name": "Milk Products",
+      "category_image_url": "",
+      "sub_categories": [
+        {
+          "category_id": "9",
+          "category_name": "Curd",
+          "category_image_url": "",
+          "sub_categories": []
+        },
+        {
+          "category_id": "10",
+          "category_name": "Milk",
+          "category_image_url": "",
+          "sub_categories": []
+        },
+        {
+          "category_id": "11",
+          "category_name": "Yoghurt",
+          "category_image_url": "",
+          "sub_categories": []
+        }
+      ]
+    },
+    {
+      "category_id": "6",
+      "category_name": "Fruits & Vegetables",
+      "category_image_url": "",
+      "sub_categories": [
+        {
+          "category_id": "13",
+          "category_name": "Fruits",
+          "category_image_url": "",
+          "sub_categories": []
+        },
+        {
+          "category_id": "14",
+          "category_name": "Vegetables",
+          "category_image_url": "",
+          "sub_categories": []
+        },
+        {
+          "category_id": "15",
+          "category_name": "Exotic Fruits",
+          "category_image_url": "",
+          "sub_categories": []
+        }
+      ]
+    },
+    {
+      "category_id": "1",
+      "category_name": "Meat",
+      "category_image_url": "",
+      "sub_categories": []
+    },
+    {
+      "category_id": "2",
+      "category_name": "Pan Shop",
+      "category_image_url": "",
+      "sub_categories": []
+    },
+    {
+      "category_id": "4",
+      "category_name": "Medical Store",
+      "category_image_url": "",
+      "sub_categories": []
+    },
+    {
+      "category_id": "5",
+      "category_name": "Pan Shop",
+      "category_image_url": "",
+      "sub_categories": []
+    }
+  ]
+}
