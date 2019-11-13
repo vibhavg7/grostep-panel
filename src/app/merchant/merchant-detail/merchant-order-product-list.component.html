@@ -29,7 +29,7 @@
                             <td>
                                 <img class='center-block img-responsive' *ngIf="!orderProduct?.image_url" src='assets/product_images/default_image.jpg' [style.width.px]='80'
                                     [style.margin.px]='2'>
-                                <img class='center-block img-responsive' *ngIf="orderProduct?.image_url" src='http://localhost:3000/{{orderProduct?.image_url}}'
+                                <img class='center-block img-responsive' *ngIf="orderProduct?.image_url" src='{{orderProduct?.image_url}}'
                                     [title]='orderProduct?.product_name' [style.width.px]='80' [style.margin.px]='2'>
                             </td>
                             <td>
@@ -40,7 +40,7 @@
                             </td>
 
                             <td>{{ orderProduct?.quantity }}</td>
-                            <td>{{ orderProduct?.total_amount }}</td>
+                            <td><i class="fas fa-rupee-sign"></i> {{ orderProduct?.total_amount }}</td>
                             <td>{{ orderProduct?.buying_date |date:'short' }}</td>
                             <!-- <td style="font-weight:bold">{{ storeOrder?.status.data[0] ? 'Available' : 'Not Available' }}</td> -->
 

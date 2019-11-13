@@ -68,7 +68,7 @@
                         [style.width.px]='250' [style.margin.px]='2'>
                    
                     <img class='center-block img-responsive' *ngIf="merchantData?.image_url" 
-                        src='http://localhost:3000/{{merchantData?.image_url}}'
+                        src='{{merchantData?.image_url}}'
                         [title]='merchantData?.store_name' [style.width.px]='250' [style.margin.px]='2'>
                    
                 </div>

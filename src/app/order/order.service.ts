@@ -16,12 +16,14 @@ export class OrderService {
  
   fetchOrderDetails(orderId) : Observable<any>
   {
+    console.log(this.orderDetails);
     if(this.orderDetails)
     {      
       return of(this.orderDetails);
     }
     return this._http.get<any>(`${this._orderService}${orderId}`).pipe(
       tap(data => {
+        console.log(data);
       })
       , map((data) => {
           this.orderDetails = data;

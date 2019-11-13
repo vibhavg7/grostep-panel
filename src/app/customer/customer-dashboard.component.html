@@ -1,84 +1,85 @@
 <div class='card'>
-        <div class='card-header'>
-            {{pageTitle}}
-        </div>
-        <div class='card-body'>
-            <div class="row">
-                <!-- <div class='row'> -->
-                <div class='col-md-2'>Filter by:</div>
-                <div class='col-md-4'>
-                    <form [formGroup]="searchCriteriaForm">
-                        <input formControlName="searchCriteria" class="form-control" type="text" id="keyword" 
-                                placeholder="Search Customer By Name" 
-                            autocomplete="off" autofocus/>
-                    </form>
-                </div>
-                <div class="col-md-6">
-                    <button class="btn btn-outline-secondary" style="float:right" [routerLink]="['/customer/',0,'edit']">
-                        Add New Customer
-                    </button>
-                </div>
+    <div class='card-header'>
+        {{pageTitle}}
+    </div>
+    <div class='card-body'>
+        <div class="row">
+            <!-- <div class='row'> -->
+            <div class='col-md-2'>Filter by:</div>
+            <div class='col-md-4'>
+                <form [formGroup]="searchCriteriaForm">
+                    <input formControlName="searchCriteria" class="form-control" type="text" id="keyword" placeholder="Search Customer By Name"
+                        autocomplete="off" autofocus/>
+                </form>
             </div>
-            <div class='table-responsive'>
-                <table style="width:1000px !important" class='table' *ngIf='customers.length'>
-                    <thead>
-                        <tr>
-                            <th>
-                                <button style="width:113px" class='btn btn-primary' (click)='toggleImage()'>
-                                    {{showImage ? 'Hide' : 'Show'}} Image
-                                </button>
-                            </th>
-                            <th style="width:90px !important">Customer Id</th>
-                            <th>Customer Name</th>
-                            <th>Customer DOB</th>
-                            <th>Registration Mode</th>
-                            <th>Phone</th>                            
-                            <th>Registration Date</th>
-                            <th>Last Seen</th>
-                            <th>Status</th>                            
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor='let customer of customers'>
-                            <td>
-                                <!-- <img *ngIf="ShowImage && product.imageUrl" src='assets/product_images/{{product.imageUrl}}' [title]='product.productName' [style.width.px]='imageWidth'
-                                [style.margin.px]='imageMargin'> -->
-                            </td>
-                            <td style="width:90px !important">
-                                <a [routerLink]="['/customer', customer.customer_id]">
-                                    {{ customer?.customer_id }}
-                                </a>
-                            </td>
-                            <td>
-                                <a [routerLink]="['/customer', customer.customer_id]">
-                                    {{ customer?.customer_name }}
-                                </a>
-                            </td>
-                            <td>
-                                {{ customer?.customer_dob | date:'medium' }}
-                            </td>
-                           
-                            <td>{{ customer?.registered_mode }}</td>
-                            <td>{{ customer?.phone }}</td>
-                            <td>{{ customer?.registered_date | date:'medium' }}</td>
-                            <td>{{ customer?.last_updated | date:'medium' }}</td>
-                            <td style="font-weight:bold">{{ store?.status.data[0] ? 'Available' : 'Not Available' }}</td>
+            <div class="col-md-6">
+                <button class="btn btn-outline-secondary" style="float:right" [routerLink]="['/customer/',0,'edit']">
+                    Add New Customer
+                </button>
+            </div>
+        </div>
+        <div class='table-responsive'>
+            <table style="width:1000px !important" class='table' *ngIf='customers.length'>
+                <thead>
+                    <tr>
+                        <th>
+                            <button style="width:113px" class='btn btn-primary' (click)='toggleImage()'>
+                                {{showImage ? 'Hide' : 'Show'}} Image
+                            </button>
+                        </th>
+                        <th style="width:90px !important">Customer Id</th>
+                        <th>Customer Name</th>
+                        <th>Customer DOB</th>
+                        <th>Registration Mode</th>
+                        <th>Phone</th>
+                        <th>Registration Date</th>
+                        <th>Last Seen</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let customer of customers'>
+                        <td>
+                            <img *ngIf="!customer?.image_url" src='assets/product_images/default_image.jpg' [title]='customer.customer_name' [style.width.px]='imageWidth'
+                                [style.margin.px]='imageMargin'>
+                            <img *ngIf="customer?.image_url" src='{{customer.image_url}}' [title]='customer.customer_name' [style.width.px]='imageWidth'
+                                [style.margin.px]='imageMargin'>
+                        </td>
+                        <td style="width:90px !important">
+                            <a [routerLink]="['/customer', customer.customer_id]">
+                                {{ customer?.customer_id }}
+                            </a>
+                        </td>
+                        <td>
+                            <a [routerLink]="['/customer', customer.customer_id]">
+                                {{ customer?.customer_name }}
+                            </a>
+                        </td>
+                        <td>
+                            {{ customer?.customer_dob | date:'medium' }}
+                        </td>
 
-    
-                            <td>
-                                <button class="btn btn-outline-secondary" [routerLink]="['/customer',customer.customer_id,'edit']">Edit</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <app-pagination *ngIf='customers.length' [totalItemCount]="total_customer_count" (currentPage)="currentPageFn($event)"></app-pagination>
-                <div *ngIf='customers?.length == 0'>
-                    No Stores Data Found
-                </div>
+                        <td>{{ customer?.registered_mode }}</td>
+                        <td>{{ customer?.phone }}</td>
+                        <td>{{ customer?.registered_date | date:'medium' }}</td>
+                        <td>{{ customer?.last_updated | date:'medium' }}</td>
+                        <td style="font-weight:bold">{{ store?.status.data[0] ? 'Available' : 'Not Available' }}</td>
+
+
+                        <td>
+                            <button class="btn btn-outline-secondary" [routerLink]="['/customer',customer.customer_id,'edit']">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-pagination *ngIf='customers.length' [totalItemCount]="total_customer_count" (currentPage)="currentPageFn($event)"></app-pagination>
+            <div *ngIf='customers?.length == 0'>
+                No Stores Data Found
             </div>
         </div>
     </div>
-    <div *ngIf='errorMessage' class='alert alert-danger'>
-        Error: {{ errorMessage }}
-    </div>
+</div>
+<div *ngIf='errorMessage' class='alert alert-danger'>
+    Error: {{ errorMessage }}
+</div>

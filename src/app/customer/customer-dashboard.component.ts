@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from './customer.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { tap, distinctUntilChanged, debounceTime, switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -18,19 +19,20 @@ export class CustomerDashboardComponent implements OnInit {
   filterBy: any = '';
   currentPage: number = 1;
   pageSize: number = 20;
+  imageWidth : number = 80;
+  imageHeight : number = 80;
+  imageMargin : number = 2;
 
-  constructor(private _customerService: CustomerService, private formBuilder: FormBuilder) {
+  constructor(private _customerService: CustomerService,private _activatedRoute:ActivatedRoute,private formBuilder: FormBuilder) {
     this.searchCriteriaForm = this.formBuilder.group({
       searchCriteria: ['']
     });
   }
 
   ngOnInit() {
-    this._customerService.fetchAllCustomers(this.currentPage, this.pageSize, this.filterBy).subscribe((data) => {
-      console.log(data);
-      this.total_customer_count = data['customer_total_count']['customer_count'];      
-      this.customers = data['customers'];
-    })
+    this.customers = this._activatedRoute.snapshot.data['customers']["customers"];
+    console.log(this.customers);
+    this.total_customer_count = this._activatedRoute.snapshot.data["customers"]['customer_total_count'];
     this.onChanges();
   }
 
@@ -44,12 +46,10 @@ export class CustomerDashboardComponent implements OnInit {
   }
 
   currentPageFn(page) {
-    // console.log(page + "-" + this.filterBy+ "-"+this.pageSize);
     this._customerService.fetchAllCustomers(page, this.pageSize, this.filterBy)
       .subscribe((data) => {
         this.total_customer_count = data['customer_total_count']['customer_count'];
         this.customers = data['customers'];
-        // console.log(this.store_total_count);
       })
   }
 

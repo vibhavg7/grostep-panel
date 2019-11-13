@@ -17,7 +17,7 @@ export class AuthService {
     }
     // currentUser: User;
     redirectUrl: any;
-    _authURL: any = "http://localhost:3000/employeeapi/";
+    _authURL: any = "http://ec2-18-224-109-141.us-east-2.compute.amazonaws.com:3000/employeeapi/";
 
     constructor(private _http: HttpClient) {
 

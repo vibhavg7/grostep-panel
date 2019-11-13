@@ -35,7 +35,7 @@ export class ShopperCategoryComponent implements OnInit {
   ngOnInit() {
     this.storeCategories  = this._activatedRoute.snapshot.data['storeCategoriesdata']['categories'];
     this.errorMessage = this._activatedRoute.snapshot.data['storeCategoriesdata']['error'];
-    // console.log(this.errorMessage);
+    console.log(this.storeCategories);
     // this._categoryServce.getAllStoreCategory(this.filterBy).subscribe((data) => {
     //   this.storeCategories = data;
     // }, (error) => {
