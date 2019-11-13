@@ -38,7 +38,8 @@
                         <td>
                             <img *ngIf="!store_product.image_url" class='center-block img-responsive' src='assets/product_images/default_image.jpg' [title]='store_product?.product_name'
                                 [style.width.px]='80' [style.margin.px]='0'>
-                            <img *ngIf="store_product.image_url" class='center-block img-responsive' src='http://http://ec2-18-224-109-141.us-east-2.compute.amazonaws.com:3000/{{store_product.image_url}}' [title]='store_product?.product_name'
+                            <img *ngIf="store_product.image_url" class='center-block img-responsive' 
+                                src='{{store_product.image_url}}' [title]='store_product?.product_name'
                                 [style.width.px]='80' [style.margin.px]='0'>
                         </td>
                         <td>

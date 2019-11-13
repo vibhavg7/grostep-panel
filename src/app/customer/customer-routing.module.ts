@@ -8,11 +8,13 @@ import { CustomerDetailInfoComponent } from './customer-detail/customer-detail-i
 import { CustomerAddressesComponent } from './customer-detail/customer-addresses.component';
 import { CustomerOrdersComponent } from './customer-detail/customer-orders.component';
 import { CustomerCartInfoComponent } from './customer-detail/customer-cart-info.component';
+import { CustomerResolverService } from './customer-resolver.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: CustomerDashboardComponent
+    component: CustomerDashboardComponent,
+    resolve:{ customers: CustomerResolverService }
   },
   {
     path: ':customerId',

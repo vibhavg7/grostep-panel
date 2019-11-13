@@ -59,7 +59,7 @@
                 <img class='center-block img-responsive' *ngIf="!customerData?.customer_image_url" src='assets/product_images/default_image.jpg'
                     [style.width.px]='250' [style.margin.px]='2'>
 
-                <img class='center-block img-responsive' *ngIf="customerData?.customer_image_url" src='http://ec2-18-224-109-141.us-east-2.compute.amazonaws.com:3000/{{customerData?.customer_image_url}}'
+                <img class='center-block img-responsive' *ngIf="customerData?.customer_image_url" src='{{customerData?.customer_image_url}}'
                     [title]='customerData?.customer_name' [style.width.px]='250' [style.margin.px]='2'>
 
             </div>

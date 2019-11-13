@@ -73,7 +73,7 @@
                     Upload Image
                 </span>
                 <img class='center-block img-responsive' *ngIf="merchantData?.image_url" 
-                    src='http://ec2-18-224-109-141.us-east-2.compute.amazonaws.com:3000/{{merchantData?.image_url}}'
+                    src='{{merchantData?.image_url}}'
                     [title]='merchantData?.store_name' [style.width.px]='250' [style.margin.px]='2'>
                 <span *ngIf="merchantData?.image_url" (click)="uploadImage(merchantData.store_id)" style="display:block;font-size:14px;cursor:pointer;color:blue">
                     Change Image

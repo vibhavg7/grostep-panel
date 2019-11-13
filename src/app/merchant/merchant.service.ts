@@ -14,9 +14,6 @@ export class MerchantService {
   private _storeServiceUrl = "http://ec2-18-224-109-141.us-east-2.compute.amazonaws.com:3000/storesapi/";
 
   fetchAllStores(page_number: number, page_size: any,filterBy : any): Observable<any> {
-    // if (this.stores) {
-    //   return of(this.stores);
-    // }
     let obj = {};
     obj['page_number'] = page_number; obj['page_size'] = page_size;obj['filterBy'] = filterBy;
     console.log(obj);
@@ -188,7 +185,6 @@ export class MerchantService {
 
   searchStoreByName(page_number: number, page_size: any,filterBy : any) : Observable<any>
   {
-    // console.log(page_number + '-' + page_size + '-'+ filterBy);
     if (this.stores) {
       return of(this.stores);
     }
@@ -197,7 +193,6 @@ export class MerchantService {
     console.log(obj);
     return this._http.post<any[]>(`${this._storeServiceUrl}`,obj)
       .pipe(
-        // debounceTime(500),
         tap(data => {
           console.log(JSON.stringify(data))
         })
@@ -209,7 +204,8 @@ export class MerchantService {
   }
 
   fetchAllStoreById(storeId): Observable<any> 
-  {   
+  {
+   
     return this._http.get(`${this._storeServiceUrl}storeinfo/${storeId}`).pipe(
       tap(data => {
         // this.storeCategories = data['store_categories'];
