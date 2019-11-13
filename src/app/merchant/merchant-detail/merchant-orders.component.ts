@@ -19,6 +19,7 @@ export class MerchantOrdersComponent implements OnInit {
   store_order_total_count: any;
   displaytype: any = 'AM';
   storeOrders: any = [];
+  errorMessage :any = "";
   filterBy: any = '';
   currentPage: number = 1;
   pageSize: number = 20;

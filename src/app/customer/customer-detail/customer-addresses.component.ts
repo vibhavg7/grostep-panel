@@ -12,7 +12,8 @@ export class CustomerAddressesComponent implements OnInit {
   constructor(private _customerService:CustomerService,private _activatedRoute:ActivatedRoute) { }
   addresses : any = [];
   customerId :any;
-  pageTitle : any = "Customer Saved Addresses";  
+  pageTitle : any = "Customer Saved Addresses";
+  errorMessage:any = "";
   ngOnInit() {
     this.customerId = +this._activatedRoute.parent.params['_value']['customerId'];
     this._customerService.fetchCustomerInfoById(this.customerId).subscribe((data) => {  

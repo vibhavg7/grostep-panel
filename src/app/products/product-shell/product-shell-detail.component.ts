@@ -37,6 +37,11 @@ export class ProductShellDetailComponent implements OnInit,OnDestroy {
     })
   }
 
+  onRatingClicked(data)
+  {
+
+  }
+
   uploadImage()
   {
     // console.log(this.product_id);

@@ -24,7 +24,7 @@
                         <td>
                             <img class='center-block img-responsive' *ngIf="!orderProduct?.image_url" src='assets/product_images/default_image.jpg' [style.width.px]='80'
                                 [style.margin.px]='2'>
-                            <img class='center-block img-responsive' *ngIf="orderProduct?.image_url" src='http://localhost:3000/{{orderProduct?.image_url}}'
+                            <img class='center-block img-responsive' *ngIf="orderProduct?.image_url" src='http://ec2-18-224-109-141.us-east-2.compute.amazonaws.com:3000/{{orderProduct?.image_url}}'
                                 [title]='orderProduct?.product_name' [style.width.px]='80' [style.margin.px]='2'>
                         </td>
                         <td>

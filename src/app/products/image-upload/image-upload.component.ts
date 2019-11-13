@@ -11,9 +11,7 @@ export class ImageUploadComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal, private _http: HttpClient) { }
   title: any = "";
-  // productId :any = "";
   image_type :any = "";
-  // storeId :any =""
   id :any =""
   filesToUpload: Array<File> = [];
   @Output('productImage') productImage = new EventEmitter<any>();
@@ -33,7 +31,7 @@ export class ImageUploadComponent implements OnInit {
     for (let i = 0; i < files.length; i++) {
       formData.append("uploadedImages[]", files[i], files[i]['name']);
     }
-    this._http.post(`http://localhost:3000/imageuploadapi/${this.image_type}/${this.id}`, formData).pipe(
+    this._http.post(`http://ec2-18-224-109-141.us-east-2.compute.amazonaws.com:3000/imageuploadapi/${this.image_type}/${this.id}`, formData).pipe(
       tap(data => {
       }),
       map((files:any) => {

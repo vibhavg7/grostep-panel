@@ -59,7 +59,7 @@
     
                 <!-- {{customerOrder?.length}} -->
                 <app-pagination *ngIf='customerOrders?.length' [totalItemCount]="order_total_count" (currentPage)="currentPageFn($event)"></app-pagination>
-                <div *ngIf='customerOrder?.length == 0'>
+                <div *ngIf='customerOrders?.length == 0'>
                     No Stores Data Found
                 </div>
             </div>

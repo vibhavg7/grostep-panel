@@ -13,6 +13,7 @@ export class MerchantDetailInfoComponent implements OnInit {
 
   merchantData: any;
   storeId: number;
+  errorMessage :any = "";
   constructor(private _merchantService: MerchantService,
     private modalService : NgbModal,
     private _activatedRoute: ActivatedRoute) { }
@@ -24,6 +25,13 @@ export class MerchantDetailInfoComponent implements OnInit {
       // console.log(this.merchantData);
     })
   }
+
+  onRatingClicked(data)
+  {
+    
+  }
+
+
 
   uploadImage(store_id:any)
   {

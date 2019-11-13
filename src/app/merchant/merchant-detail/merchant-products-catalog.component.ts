@@ -20,6 +20,7 @@ export class MerchantProductsCatalogComponent implements OnInit {
   store_products_count : any;
   showImage : any = false;
   displaytype: any = 'SP';
+  errorMessage :any = "";
   constructor(private _merchantService:MerchantService,private _activatedRoute:ActivatedRoute,private formBuilder:FormBuilder) {
     this.searchCriteriaForm = this.formBuilder.group({
       searchCriteria: ['']

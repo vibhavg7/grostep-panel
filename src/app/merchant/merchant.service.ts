@@ -209,15 +209,8 @@ export class MerchantService {
   }
 
   fetchAllStoreById(storeId): Observable<any> 
-  {
-    // let getHeaders : HttpHeaders = new HttpHeaders({
-    //   'Accept':'application/json',
-    //   'Authorization':'my-key'
-    // });
-    // ,{
-    //   headers:getHeaders
-    // }
-    return this._http.get(`http://localhost:3000/storesapi/storeinfo/${storeId}`).pipe(
+  {   
+    return this._http.get(`${this._storeServiceUrl}storeinfo/${storeId}`).pipe(
       tap(data => {
         // this.storeCategories = data['store_categories'];
         // console.log(data);

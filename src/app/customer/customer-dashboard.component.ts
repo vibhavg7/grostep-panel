@@ -17,6 +17,7 @@ export class CustomerDashboardComponent implements OnInit {
   customers: any = [];
   filterBy: any = '';
   currentPage: number = 1;
+  errorMessage:any = "";
   pageSize: number = 20;
 
   constructor(private _customerService: CustomerService, private formBuilder: FormBuilder) {

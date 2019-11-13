@@ -19,6 +19,7 @@ export class CustomerOrdersComponent implements OnInit {
   customerId : any = "";
   pageTitle: any = "Merchant Orders";
   filterBy: any = '';
+  errorMessage:any = "";
   currentPage: number = 1;
   pageSize: number = 20;
   constructor(private _activatedRoute:ActivatedRoute, private formBuilder: FormBuilder,

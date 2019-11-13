@@ -12,6 +12,7 @@ export class CustomerDetailInfoComponent implements OnInit {
   customerData: any;
   constructor(private _activatedRoute:ActivatedRoute,private _customerService:CustomerService) { }
   customerId : any = "";
+  errorMessage:any = "";
   ngOnInit() {
     this.customerId = +this._activatedRoute.parent.params['_value']['customerId'];
     this._customerService.fetchCustomerInfoById(this.customerId).subscribe((data) => {      

@@ -50,6 +50,11 @@ export class CriteriaComponent implements OnInit, OnChanges, AfterViewInit {
     this.valueChange.emit(value);
   }
 
+  addProduct()
+  {
+    
+  }
+
   addStoreProduct()
   {    
     this.storeId = this._activatedRoute.parent.params['_value']['storeId'];
